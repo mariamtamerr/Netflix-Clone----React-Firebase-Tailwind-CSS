@@ -1,9 +1,29 @@
 import React, { useState } from 'react'
 import {FaHeart, FaRegHeart} from 'react-icons/fa'
+import { UserAuth } from '../context/AuthContext'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
+import { db } from '../firebase'
 
 const Movie = ({item}) => {
     const [like, setLike] = useState(false)
+    const [saved, setSaved ] = useState(false)
+    const { user } = UserAuth();
 
+    const movieID = doc(db, 'users', `${user?.email}` )
+
+    const saveShow = async () => {
+      if (user?.email) {
+        setLike(!like)
+        setSaved(true)
+        await updateDoc(movieID, {
+          savedShows: arrayUnion( {
+            id: item.id,
+            title: item.title,
+            img: item.backdrop_path
+          })
+        })
+      }
+    }
 
   return (
     <div className=' text-white relative inline-block  w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] h-[250px] my-4 mx-1 '>
@@ -12,9 +32,9 @@ const Movie = ({item}) => {
         <p className='white-space-normal absolute top-[6rem] left-4 text-xs md:text-sm font-bold'>
             {item?.title}
         </p>
-        <p>
-            {like? <FaHeart className=' absolute top-2  text-gray-300'/> : <FaRegHeart className='absolute top-2 right-0 text-gray-300'/> }
-        </p>
+        <a onClick={saveShow} className='cursor-pointer'>
+            {like? <FaHeart className=' absolute top-2 right-4  text-gray-300'/> : <FaRegHeart className='absolute top-2 right-4 text-gray-300'/> }
+        </a>
 
     </div>
 </div>

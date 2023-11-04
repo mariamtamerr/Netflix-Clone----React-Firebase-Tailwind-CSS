@@ -17,7 +17,7 @@ const Navbar = () => {
       logout()
       .then( () => {
           // signout successful 
-          navigate("/");
+          navigate("/login");
           console.log("Signed Out Successfully");
       }).catch( (error) => {
           console.log(error);
@@ -34,7 +34,8 @@ const Navbar = () => {
 
  <div className='Navbar flex items-center justify-between p-4 px-6 z-[100] w-full absolute'>
     <Link to='/'>
-     <h1 className='text-red-200 text-4xl font-bold '  >NETFLIX</h1>
+     {/* <h1 className='text-red-600 text-4xl font-bold '  >NETFLIX</h1> */}
+     <h1 className='text-red-600 text-3xl lg:text-5xl font-bold '  >NETFLIX</h1>
     </Link>
 
 {
