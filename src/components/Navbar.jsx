@@ -35,7 +35,7 @@ const Navbar = () => {
  <div className='Navbar flex items-center justify-between p-4 px-6 z-[100] w-full absolute'>
     <Link to='/'>
      {/* <h1 className='text-red-600 text-4xl font-bold '  >NETFLIX</h1> */}
-     <h1 className='text-red-600 text-3xl lg:text-6xl font-bold '  >NETFLIX</h1>
+     <h1 className='text-red-600 text-3xl lg:text-5xl font-bold '  >NETFLIX</h1>
      {/* <h1 className='text-red-600 text-4xl sm:text-3xl font-bold'>NETFLIX</h1> */}
 
     </Link>
@@ -46,7 +46,7 @@ const Navbar = () => {
         <Link to='/account'>
           <button className='text-white pr-4' >Account</button>
         </Link>
-          <button onClick={handleLogout} className='bg-red-600 rounded px-6 py-2 text-white cursor-pointer'>Logout</button>
+          <button onClick={handleLogout} className='bg-red-600 rounded xs:px-2 xs:py-2 px-6 py-2 text-white cursor-pointer'>Logout</button>
     </div>
   ):  (
      <div>
@@ -55,7 +55,7 @@ const Navbar = () => {
         </Link>
 
         <Link to='/login'>
-          <button className='bg-red-600 rounded px-6 py-2 text-white cursor-pointer'>Login</button>
+          <button className='bg-red-600 rounded  px-6 py-2 text-white cursor-pointer'>Login</button>
         </Link>
     
     </div>
