@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Account from './pages/Account'
 import Signout from './pages/Signout'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   
@@ -17,12 +18,14 @@ return (
 <AuthContextProvider>
   <Navbar/>
   <Routes>
-      {/* <Route path='/' element={<Home/>} /> */}
-      <Route path='/' element={<Account home={<Home /> }/>} />
+      <Route path='/' element={<Home/>} />
+      <Route path='/account' element={ <ProtectedRoute>
+          <Account home={<Home /> }/>
+      </ProtectedRoute> }  />
       <Route path='/login' element={<Login/>} />
       <Route path='/signup' element={<Signup />} />
       {/* <Route path='/account' element={<Account/>} /> */}
-      <Route path='/signout' element={<Signout/>} />
+      {/* <Route path='/signout' element={<Signout/>} /> */}
   </Routes>
 </AuthContextProvider>
 

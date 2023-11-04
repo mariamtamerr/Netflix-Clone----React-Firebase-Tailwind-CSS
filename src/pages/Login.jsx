@@ -8,6 +8,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ const Login = () => {
     })
     .catch( (error ) => {
         console.log(error)
+        setError(error.message);
 
     })
   }
@@ -39,10 +42,13 @@ const Login = () => {
           <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-white' >
             <div className='max-w-[320px] mx-auto py-16'>
               <h1 className='text-3xl font-bold mb-4' >Sign In</h1>
+              {
+                error? <p className='text-white font-semibold bg-red-400 rounded-sm p-1.5 text-center my-6'> {error}  </p> : null 
+              }
               <form className='w-full flex flex-col py-4 ' action='' method=''>
                 <input onChange={(e)=>setEmail(e.target.value)} className='rounded mb-6 p-4 bg-gray-700 ' type='email' placeholder=' Email' autoComplete='Email' />
                 <input onChange={(e)=>setPassword(e.target.value)} className='rounded mb-4 p-4 bg-gray-700' type='password' placeholder=' Password' autoComplete='Password' />
-                <button onClick={handleSubmit} className='bg-red-600 font-bold p-3 mt-6 rounded'>Sign Up</button>
+                <button onClick={handleSubmit} className='bg-red-600 font-bold p-3 mt-6 rounded'>Sign In</button>
               </form>
               <div className='flex justify-between items-center text-sm text-gray-600 '>
                   <p><input className='mr-2' type='checkbox'/>Remember Me</p>
