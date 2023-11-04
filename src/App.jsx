@@ -7,8 +7,7 @@ import { AuthContextProvider } from './context/AuthContext'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Account from './pages/Account'
-// import {firebaseConfig} from './firebase'
-
+import Signout from './pages/Signout'
 
 function App() {
   
@@ -18,14 +17,15 @@ return (
 <AuthContextProvider>
   <Navbar/>
   <Routes>
-      <Route path='/' element={<Home/>} />
+      {/* <Route path='/' element={<Home/>} /> */}
+      <Route path='/' element={<Account home={<Home /> }/>} />
       <Route path='/login' element={<Login/>} />
-      <Route path='/signup' element={<Signup/>} />
-      <Route path='/account' element={<Account/>} />
+      <Route path='/signup' element={<Signup />} />
+      {/* <Route path='/account' element={<Account/>} /> */}
+      <Route path='/signout' element={<Signout/>} />
   </Routes>
 </AuthContextProvider>
 
-{/* firebase.initializeApp(firebaseConfig); */}
 
   </>
 )

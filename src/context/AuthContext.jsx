@@ -11,7 +11,7 @@ const AuthContext = createContext()
 export function AuthContextProvider({children}) {
     const [user, setUser] = useState({})
 
-    function signUp(email,password){
+    function signup(email,password){
         return createUserWithEmailAndPassword(email,password)
     }
 
@@ -34,7 +34,7 @@ export function AuthContextProvider({children}) {
     })
    
     return (
-        <AuthContext.Provider value={{user, signUp, login, logout}}>
+        <AuthContext.Provider value={{user, signup, login, logout}}>
         {/* <AuthContext.Provider value={{user, signUp}}> */}
             {children}
         </AuthContext.Provider>
