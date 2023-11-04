@@ -1,8 +1,9 @@
 import React, {  useState } from 'react'
 import { Link, useNavigate, NavLink } from 'react-router-dom'
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
 import { createUserWithEmailAndPassword } from '@firebase/auth'
 import { UserAuth } from '../context/AuthContext'
+import { doc, setDoc } from 'firebase/firestore'
 
 
 
@@ -13,15 +14,22 @@ const Signup = () => {
   const navigate = useNavigate();
   const [email, setEmail ] = useState('')
   const [password, setPassword ] = useState('')
+  const [error, setError] = useState('')
   const {user, signup} = UserAuth()
+
+
 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createUserWithEmailAndPassword(auth, email, password)
+    //  signup( email, password)
+   await  createUserWithEmailAndPassword(auth, email, password) ;
+     setDoc(doc(db, 'users', email ) ,  {
+      savedShows: []
+  })
     .then( ()=> {
-      navigate("/login");  
+      navigate("/");  
 
         // .then((userCredential) => {
         //     // Signed in
@@ -30,16 +38,13 @@ const Signup = () => {
         //     navigate("/login")
         //     // ...
         // })
-    })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-            // ..
-        });
- 
+      })
+      .catch( (error ) => {
+          // console.log(error)
+          setError(error.message);
+  
+      })
     }
-
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -79,8 +84,12 @@ const Signup = () => {
           <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-white' >
             <div className='max-w-[320px] mx-auto py-16'>
               <h1 className='text-3xl font-bold mb-4' >Sign Up</h1>
-             
-              <form  className='w-full flex flex-col py-4 '>
+              {
+                error? <p className='text-white font-semibold bg-red-400 rounded-sm p-1.5 text-center my-6'> {error}  </p> : null 
+              }
+
+      
+              <form  onSubmit={handleSubmit} className='w-full flex flex-col py-4 '>
                 <input onChange={(e) => setEmail(e.target.value)}
                    className='rounded mb-6 p-4 bg-gray-700 ' type='email' placeholder=' Email' autoComplete='Email' />
                 <input onChange={(e)=> setPassword(e.target.value)}
