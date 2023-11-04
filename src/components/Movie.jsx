@@ -3,6 +3,7 @@ import {FaHeart, FaRegHeart} from 'react-icons/fa'
 import { UserAuth } from '../context/AuthContext'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
+import Account from '../pages/Account'
 
 const Movie = ({item}) => {
     const [like, setLike] = useState(false)
@@ -21,11 +22,14 @@ const Movie = ({item}) => {
             title: item.title,
             img: item.backdrop_path
           })
-        })
+        }) 
+      } else {
+        alert('You Must Be Logged In !')
       }
     }
 
   return (
+    
     <div className=' text-white relative inline-block  w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] h-[250px] my-4 mx-1 '>
     <img className='w-full h-full  object-cover' src={`https://image.tmdb.org/t/p/w500${item?.backdrop_path}`} />
     <div className='w-full absolute top-0 left-0 h-full hover:bg-black/80 opacity-0 hover:opacity-100'>
@@ -37,6 +41,7 @@ const Movie = ({item}) => {
         </a>
 
     </div>
+    
 </div>
 
   )

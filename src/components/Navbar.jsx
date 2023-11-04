@@ -35,7 +35,9 @@ const Navbar = () => {
  <div className='Navbar flex items-center justify-between p-4 px-6 z-[100] w-full absolute'>
     <Link to='/'>
      {/* <h1 className='text-red-600 text-4xl font-bold '  >NETFLIX</h1> */}
-     <h1 className='text-red-600 text-3xl lg:text-5xl font-bold '  >NETFLIX</h1>
+     <h1 className='text-red-600 text-3xl lg:text-6xl font-bold '  >NETFLIX</h1>
+     {/* <h1 className='text-red-600 text-4xl sm:text-3xl font-bold'>NETFLIX</h1> */}
+
     </Link>
 
 {
