@@ -26,11 +26,11 @@ const Top = () => {
 
     <div className=' font-bold  '>
         <img className='w-full h-[600px] object-cover' src={`https://image.tmdb.org/t/p/original${changingMovie?.backdrop_path}`} alt={changingMovie?.title}/>
-        <div className='content p-4 px-6 absolute top-[15rem] '>
+        <div className='content lg:-mt-9 -mt-16 p-4 px-6 absolute top-[15rem] '>
         <h1 className='text-white text-5xl my-[20px] font-bold' style={{marginBottom: "2rem"}}>{changingMovie?.title}</h1>
         <div className='buttons  cursor-pointer mb-7 my-4'>
             <a className='bg-gray-100 p-2 px-6 font-normal my-[20px] text-2xl '>Play</a>
-            <a className='text-gray-500 my-[20px] p-2 px-5 text-2xl font-sans font-normal ml-4' style={{border: "2px solid gray"}}>Watch Later</a>
+            <a className='text-gray-500 my-[20px] p-2 px-5 text-2xl font-sans font-normal ml-4 hover:text-white hover:bg-gray-500' style={{border: "2px solid gray"}}>Watch Later</a>
         </div>
         <p className='text-gray-400 text-[1.1rem] mb-4'>Release Date :  {changingMovie?.release_date}</p>
         <p className='text-white text-xl  font-normal '>{changingMovie?.overview.substring(0,170)}</p>

@@ -40,6 +40,7 @@ const Signup = () => {
         // })
       })
       .catch( (error ) => {
+        alert(error.message);
           // console.log(error)
           setError(error.message);
   
